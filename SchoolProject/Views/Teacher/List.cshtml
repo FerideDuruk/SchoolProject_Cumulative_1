@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Teachers</h2>
+
+<!--List of all teachers with links to their full information-->
+@foreach (var teacher in Model)
+{
+    <div><a href="/Teacher/Show/@teacher.Id">@teacher.FirstName @teacher.LastName</a></div>
+}
+

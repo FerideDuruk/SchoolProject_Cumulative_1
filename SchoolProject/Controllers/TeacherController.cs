@@ -21,6 +21,9 @@ namespace SchoolProject.Controllers
         {
             TeacherDataController controller = new TeacherDataController();
             IEnumerable<Teacher> Teachers = controller.ListTeachers();
+
+            // Web server redirects to List view showing all teachers
+            // Views/Teacher/List.cshtml
             return View(Teachers);
         }
 
@@ -29,12 +32,17 @@ namespace SchoolProject.Controllers
         {
             TeacherDataController controller = new TeacherDataController();
             Teacher oneTeacher = controller.FindTeacher(id);
+
+            // Web server redirects to Show view showing only selected teacher
+            // Views/Teacher/Show.cshtml
             return View(oneTeacher);
         }
 
         //GET : /Teacher/New
         public ActionResult New()
         {
+            // Web server redirects to New view which only contains a form for teacher submission
+            // Views/Teacher/New.cshtml
             return View();
         }
 
@@ -55,8 +63,10 @@ namespace SchoolProject.Controllers
             newTeacher.Salary = salary;
 
             TeacherDataController controller = new TeacherDataController();
-            // works
             controller.AddTeacherToDB(newTeacher);
+
+            // Web server redirects to List view showing all teachers
+            // Views/Teacher/List.cshtml
             return RedirectToAction("List");
 
             //int addedTeacherId = controller.AddTeacher(newTeacher);
@@ -64,14 +74,14 @@ namespace SchoolProject.Controllers
             //return View("Show");
 
         }
-        //GET : /Teacher/Delete
+/*      //GET : /Teacher/Delete{id}
         public ActionResult Delete(int id)
         {
             TeacherDataController controller = new TeacherDataController();
             Teacher oneTeacher = controller.FindTeacher(id);
             return View(oneTeacher);
 
-        }
+        }*/
 
 
         //POST : /Teacher/DeleteTeacher/{id}
@@ -80,6 +90,9 @@ namespace SchoolProject.Controllers
         {
             TeacherDataController controller = new TeacherDataController();
             controller.DeleteTeacherFromDB(id);
+
+            // Web server redirects to List view showing all teachers
+            // Views/Teacher/List.cshtml
             return RedirectToAction("List");
 
         }

@@ -7,7 +7,7 @@ namespace SchoolProject.Models
 {
     public class Teacher
     {
-        // Teacher's properties
+        // Teacher object properties
         public decimal Salary;
         public int Id;
         public string FirstName;

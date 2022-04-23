@@ -11,18 +11,21 @@ using System.Diagnostics;
 
 namespace SchoolProject.Controllers
 {
+    // TeacherDataController will access the teachers table of the school database.
     public class TeacherDataController : ApiController
     {
         // Created an object School of SchoolDbContext class which allows to access MySQL Database
         private SchoolDbContext School = new SchoolDbContext();
 
-        // TeacherDataController will access the teachers table of the school database.
+
         /// <summary>
         /// Returns a list of all teachers in the database
         /// </summary>
-        /// <example>GET api/TeacherData/ListTeachers</example>
+        /// <example>
+        /// GET api/TeacherData/ListTeachers
+        /// </example>
         /// <returns>
-        /// A list of teachers objects
+        /// A list of all Teacher objects
         /// </returns>
         [HttpGet]
         public IEnumerable<Teacher> ListTeachers()
@@ -76,9 +79,11 @@ namespace SchoolProject.Controllers
         /// <summary>
         /// Returns one teacher from the database
         /// </summary>
-        /// <example>GET api/TeacherData/FindTeacher/{id}</example>
+        /// <example>
+        /// GET api/TeacherData/FindTeacher/{id}
+        /// </example>
         /// <returns>
-        /// One teacher's object
+        /// One Teacher object
         /// </returns>
         [HttpGet]
         public Teacher FindTeacher(int id)
@@ -153,6 +158,21 @@ namespace SchoolProject.Controllers
         //    return teacherId;
         //}
 
+
+        /// <summary>
+        /// Adds a Teacher to the MySQL Database.
+        /// </summary>
+        /// <param name="teacher">An object with fields that map to the columns of the teacher's table. Non-Deterministic.</param>
+        /// <example>
+        /// POST api/TeacherData/AddTeacherToDB 
+        /// FORM DATA / POST DATA / REQUEST BODY 
+        /// {
+        ///	"FirstName":"Feride",
+        ///	"LastName":"Duruk",
+        ///	"EmployeeNum":"T123",
+        ///	"Salary":100
+        /// }
+        /// </example>
         [HttpPost]
         public void AddTeacherToDB(Teacher teacher)
         {
@@ -187,6 +207,14 @@ namespace SchoolProject.Controllers
             //int latestTeacherId = controller.FindLastTeacherId();
             //return latestTeacherId;
         }
+
+        /// <summary>
+        /// Adds a Teacher to the MySQL Database.
+        /// </summary>
+        /// <param name="id">An int for teacherid in the teacher's table. Non-Deterministic.</param>
+        /// <example>
+        /// GET api/TeacherData/DeleteTeacherFromDB/{id} 
+        /// </example>
         [HttpGet]
         public void DeleteTeacherFromDB(int id)
         {

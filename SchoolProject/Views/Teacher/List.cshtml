@@ -1,13 +1,15 @@
-﻿
+﻿<link href="@Url.Content("~/Content/Site.css") rel="stylesheet" type="text/css"/>
 @{
     ViewBag.Title = "List";
 }
+
+<a href="/Teacher/New">Add a New Teacher</a>
 
 <h2>List of Teachers</h2>
 
 <!--List of all teachers with links to their full information-->
 @foreach (var teacher in Model)
 {
-    <div><a href="/Teacher/Show/@teacher.Id">@teacher.FirstName @teacher.LastName</a></div>
+    <div><a class="nav-listTeachers" href="/Teacher/Show/@teacher.Id">@teacher.FirstName @teacher.LastName</a></div>
 }
 

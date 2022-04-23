@@ -15,3 +15,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+#listLinks {
+    font-family: Stencil;
+    font-size: 30px;
+}
+
+.listTeachers {
+    text-align:right;
+}

@@ -1,0 +1,17 @@
+﻿@model SchoolProject.Models.Teacher
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Warning: Deleting is permanent</h2>
+
+<div>
+    <div>@Model.FirstName @Model.LastName</div>
+</div>
+
+<form method="POST" action="/Teacher/DeleteTeacher/@Model.Id">
+
+    <div>
+        <input type="submit" value="Delete" />
+    </div>
+</form>

@@ -8,10 +8,11 @@ namespace SchoolProject.Models
     public class Teacher
     {
         // Teacher's properties
-        public int Salary;
+        public decimal Salary;
         public int Id;
         public string FirstName;
         public string LastName;
+        public string EmployeeNum;
         public DateTime HireDate;
 
     }

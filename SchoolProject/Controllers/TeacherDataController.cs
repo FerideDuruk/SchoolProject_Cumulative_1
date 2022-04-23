@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using SchoolProject.Models;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
+
 
 namespace SchoolProject.Controllers
 {
@@ -122,6 +124,94 @@ namespace SchoolProject.Controllers
             return eachTeacher;
         }
 
+        //[HttpGet]
+        //public int FindLastTeacherId()
+        //{
+
+        //    // Created object dbConnection of MySqlConnection type
+        //    MySqlConnection dbConnection = School.AccessDatabase();
+
+        //    // Opened the connection between the web server and database
+        //    dbConnection.Open();
+
+        //    // Created a new command for the school database
+        //    MySqlCommand query = dbConnection.CreateCommand();
+
+        //    // Specified MySQL query
+        //    query.CommandText = "SELECT teacherid FROM teachers order by teacherid desc limit 1";
+
+        //    // Saved results of the query into the variable queryResult
+        //    MySqlDataReader queryResult = query.ExecuteReader();
+
+        //    // Read data from queryResult
+        //    int teacherId = Convert.ToInt32(queryResult["teacherid"]);
+
+        //    // Close the connection between the MySQL Database and the WebServer
+        //    dbConnection.Close();
+
+        //    // Return teacher's id
+        //    return teacherId;
+        //}
+
+        [HttpPost]
+        public void AddTeacherToDB(Teacher teacher)
+        {
+
+            // Created object dbConnection of MySqlConnection type
+            MySqlConnection dbConnection = School.AccessDatabase();
+
+            // Opened the connection between the web server and database
+            dbConnection.Open();
+
+            // Created a new command for the school database
+            MySqlCommand query = dbConnection.CreateCommand();
+
+            // Specified MySQL query
+            // Used parameters in the query to sanitize input and avoid sql injection hacks
+            query.CommandText = "INSERT INTO teachers (teacherfname, teacherlname, employeenumber, hiredate, salary) VALUES (@FirstName, @LastName, @EmployeeNum, CURRENT_DATE(), @Salary)";
+            query.Parameters.AddWithValue("@FirstName", teacher.FirstName);
+            query.Parameters.AddWithValue("@LastName", teacher.LastName);
+            query.Parameters.AddWithValue("@EmployeeNum", teacher.EmployeeNum);
+            query.Parameters.AddWithValue("@Salary", teacher.Salary);
+
+            query.Prepare();
+            query.ExecuteNonQuery();
+
+
+            // Close the connection between the MySQL Database and the WebServer
+            dbConnection.Close();
+            // end, return type is void
+
+            //// Returned teacher's object that includes id, first name, last name, salary and hire date
+            //TeacherDataController controller = new TeacherDataController();
+            //int latestTeacherId = controller.FindLastTeacherId();
+            //return latestTeacherId;
+        }
+        [HttpGet]
+        public void DeleteTeacherFromDB(int id)
+        {
+            // Created object dbConnection of MySqlConnection type
+            MySqlConnection dbConnection = School.AccessDatabase();
+
+            // Opened the connection between the web server and database
+            dbConnection.Open();
+
+            // Created a new command for the school database
+            MySqlCommand query = dbConnection.CreateCommand();
+
+            // Specified MySQL query
+            // Used parameters in the query to sanitize input and avoid sql injection hacks
+            query.CommandText = "DELETE from teachers where teacherid = @id";
+            query.Parameters.AddWithValue("@id", id);
+
+            query.Prepare();
+            query.ExecuteNonQuery();
+
+            // Close the connection between the MySQL Database and the WebServer
+            dbConnection.Close();
+
+
+        }
 
     }
 }

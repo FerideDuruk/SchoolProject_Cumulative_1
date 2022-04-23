@@ -74,14 +74,17 @@ namespace SchoolProject.Controllers
             //return View("Show");
 
         }
-/*      //GET : /Teacher/Delete{id}
+        //GET : /Teacher/Delete{id}
         public ActionResult Delete(int id)
         {
             TeacherDataController controller = new TeacherDataController();
             Teacher oneTeacher = controller.FindTeacher(id);
+
+            // Web server redirects to Delete view showing one teacher to be deleted
+            // Views/Teacher/Delete.cshtml
             return View(oneTeacher);
 
-        }*/
+        }
 
 
         //POST : /Teacher/DeleteTeacher/{id}

@@ -1,35 +1,47 @@
-﻿
+﻿<link href="~/Content/Site.css" rel="stylesheet" />
 @{
     ViewBag.Title = "New";
 }
 
 <h2>Add a New Teacher</h2>
-
-@*POST request to /Teacher/AddNewTeacher*@
+<div><a href="/Teacher/List">Back to All Teachers</a></div>
+<!--POST request to /Teacher/AddNewTeacher-->
 <form method="POST" action="/Teacher/AddNewTeacher">
 
     <div>
         <label for="fname">First Name:</label>
+    </div>
+
+    <div>
         <input type="text" name="fname" />
     </div>
 
     <div>
         <label for="lname">Last Name:</label>
+    </div>
+
+    <div>
         <input type="text" name="lname" />
     </div>
 
     <div>
-        <label for="emplnum">Employee Number:</label>
+        <label for="emplnum">Employee #:</label>
+    </div>
+
+    <div>
         <input type="text" name="emplnum" />
     </div>
 
     <div>
         <label for="sal">Salary:</label>
+    </div>
+
+    <div>
         <input type="text" name="salary" />
     </div>
 
     <div>
-        <input type="submit" value="Add New Teacher" />
+        <input id="editAddBtn" type="submit" value="Add New Teacher" />
     </div>
 
 </form>

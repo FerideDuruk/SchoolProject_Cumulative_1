@@ -114,10 +114,12 @@ namespace SchoolProject.Controllers
                 int teacherSalary = Convert.ToInt32(queryResult["salary"]);
                 int teacherId = Convert.ToInt32(queryResult["teacherid"]);
                 DateTime teacherHireDate = Convert.ToDateTime(queryResult["hiredate"]);
+                string employeeNumber = queryResult["employeenumber"].ToString();
 
                 eachTeacher.Id = teacherId;
                 eachTeacher.FirstName = teacherFirstName;
                 eachTeacher.LastName = teacherLastName;
+                eachTeacher.EmployeeNum = employeeNumber;
                 eachTeacher.Salary = teacherSalary;
                 eachTeacher.HireDate = teacherHireDate;
             }
@@ -209,7 +211,7 @@ namespace SchoolProject.Controllers
         }
 
         /// <summary>
-        /// Adds a Teacher to the MySQL Database.
+        /// Deletes a Teacher from the MySQL Database.
         /// </summary>
         /// <param name="id">An int for teacherid in the teacher's table. Non-Deterministic.</param>
         /// <example>
@@ -229,7 +231,7 @@ namespace SchoolProject.Controllers
 
             // Specified MySQL query
             // Used parameters in the query to sanitize input and avoid sql injection hacks
-            query.CommandText = "DELETE from teachers where teacherid = @id";
+            query.CommandText = "DELETE from teachers WHERE teacherid = @id";
             query.Parameters.AddWithValue("@id", id);
 
             query.Prepare();
@@ -238,6 +240,51 @@ namespace SchoolProject.Controllers
             // Close the connection between the MySQL Database and the WebServer
             dbConnection.Close();
 
+
+        }
+
+        /// <summary>
+        /// Updates a Teacher in the MySQL Database.
+        /// </summary>
+        /// <param name="teacher">An object with fields that map to the columns of the teacher's table. Non-Deterministic.</param>
+        /// <example>
+        /// POST api/TeacherData/AddTeacherToDB 
+        /// FORM DATA / POST DATA / REQUEST BODY 
+        /// {
+        ///	"FirstName":"Feride",
+        ///	"LastName":"Duruk",
+        ///	"EmployeeNum":"T123",
+        ///	"Salary":100
+        /// }
+        /// </example>
+        [HttpPost]
+        public void UpdateTeacherInDB(Teacher teacher)
+        {
+
+            // Created object dbConnection of MySqlConnection type
+            MySqlConnection dbConnection = School.AccessDatabase();
+
+            // Opened the connection between the web server and database
+            dbConnection.Open();
+
+            // Created a new command for the school database
+            MySqlCommand query = dbConnection.CreateCommand();
+
+            // Specified MySQL query
+            // Used parameters in the query to sanitize input and avoid sql injection hacks
+            query.CommandText = "UPDATE teachers SET teacherfname=@FirstName, teacherlname=@LastName, employeenumber=@EmployeeNum, salary=@Salary WHERE teacherid=@id";
+            query.Parameters.AddWithValue("@FirstName", teacher.FirstName);
+            query.Parameters.AddWithValue("@LastName", teacher.LastName);
+            query.Parameters.AddWithValue("@EmployeeNum", teacher.EmployeeNum);
+            query.Parameters.AddWithValue("@Salary", teacher.Salary);
+            query.Parameters.AddWithValue("@id", teacher.Id);
+
+            query.Prepare();
+            query.ExecuteNonQuery();
+
+
+            // Close the connection between the MySQL Database and the WebServer
+            dbConnection.Close();
 
         }
 

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Show";
 
 }
@@ -10,10 +9,16 @@
 <!--Teacher's full information-->
 <!--Delete link that redirects to Delete view for a particular teacher-->
 <div>
-    <div>@Model.FirstName @Model.LastName</div>
+    <div><a href="/Teacher/List">Back to All Teachers</a></div>
+
+    <a class="navButton" href="/Teacher/Edit/@Model.Id">Edit This Teacher</a>
+    <a class="navButtonDelete" href="/Teacher/Delete/@Model.Id">Delete This Teacher</a>
+
+    <div id="showname">@Model.FirstName @Model.LastName</div>
+    <div>Employee #: @Model.EmployeeNum</div>
     <div> Salary: @Model.Salary</div>
     <div>Hire date: @Model.HireDate</div>
-    <a href="/Teacher/Delete/@Model.Id">Delete This Teacher</a>
+
 </div>
 
 

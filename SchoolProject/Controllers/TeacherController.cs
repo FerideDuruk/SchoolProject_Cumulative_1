@@ -99,5 +99,47 @@ namespace SchoolProject.Controllers
             return RedirectToAction("List");
 
         }
+
+        //GET : /Teacher/Edit{id}
+        public ActionResult Edit(int id)
+        {
+            // Find teacher and pass the Teacher object to Edit view
+            TeacherDataController controller = new TeacherDataController();
+            Teacher oneTeacher = controller.FindTeacher(id);
+
+            // Web server redirects to Delete view showing one teacher to be deleted
+            // Views/Teacher/Edit.cshtml
+            return View(oneTeacher);
+
+        }
+
+        //POST : /Teacher/UpdateTeacher/{id}
+        /// <summary>
+        /// Returns one teacher from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// One Teacher object
+        /// </returns>
+        [HttpPost]
+        public ActionResult UpdateTeacher(int id, string fname, string lname, string emplnum, decimal salary)
+        {
+            TeacherDataController controller = new TeacherDataController();
+
+            Teacher newTeacher = new Teacher();
+            newTeacher.Id = id;
+            newTeacher.FirstName = fname;
+            newTeacher.LastName = lname;
+            newTeacher.EmployeeNum = emplnum;
+            newTeacher.Salary = salary;
+
+            controller.UpdateTeacherInDB(newTeacher);
+
+            // Web server redirects to List view showing all teachers
+            // Views/Teacher/List.cshtml
+            return RedirectToAction("Show/"+id);
+
+        }
+
     }
 }

@@ -1,18 +1,21 @@
-﻿@model SchoolProject.Models.Teacher
+﻿<link href="~/Content/Site.css" rel="stylesheet" />
+@model SchoolProject.Models.Teacher
 @{
     ViewBag.Title = "Delete";
 }
 
-<h2>Warning: Deleting is permanent</h2>
+<h2>Warning: Are you sure you want to delete?</h2>
 
 <div>
-    <div>@Model.FirstName @Model.LastName</div>
+    <a href="/Teacher/Show/@Model.Id">Go Back</a>
+    <div id="showname">@Model.FirstName @Model.LastName</div>
 </div>
 
 <!--POST request to /Teacher/DeleteTeacher/{id}-->
 <form method="POST" action="/Teacher/DeleteTeacher/@Model.Id">
-
-    <div>
-        <input type="submit" value="Delete" />
-    </div>
+    <input id="deleteBtn" type="submit" value="Delete" />
 </form>
+
+<nav>
+    <a class="navButtonCancel" href="/Teacher/Show/@Model.Id">Cancel</a>
+</nav>

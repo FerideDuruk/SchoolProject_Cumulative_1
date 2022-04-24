@@ -15,8 +15,109 @@ select,
 textarea {
     max-width: 280px;
 }
+.listview{
+    font-size: 20px;
+}
 
-
-.nav-listTeachers {
+.navButton:link {
+    padding: 10px 30px;
+    margin-top: 20px;
+    color: white;
     text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: green;
+}
+
+.navButton:visited {
+    padding: 10px 30px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: green;
+}
+
+#showname{
+    font-size: 40px;
+}
+
+/*#textbold{
+    font-weight:bold;
+}*/
+
+
+.navButtonDelete:link{
+    padding: 10px 30px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: red;
+}
+
+.navButtonDelete:visited {
+    padding: 10px 30px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: red;
+}
+
+.navButtonCancel:link {
+    padding: 5px 15px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: darkblue;
+}
+
+.navButtonCancel:visited {
+    padding: 5px 15px;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    background-color: darkblue;
+}
+
+#deleteBtn {
+    background-color: red;
+    color: white;
+    border:solid;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/*#cancelBtn {
+    background-color: darkblue;
+    color: white;
+    border: solid;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}*/
+
+#editAddBtn {
+    margin-top: 20px;
+    background-color: darkblue;
+    color: white;
+    border: solid;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
